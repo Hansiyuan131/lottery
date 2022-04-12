@@ -10,7 +10,12 @@ spring:
 
 mybatis:
   mapper-locations: classpath:/mybatis/mapper/*.xml
-  config-location:  classpath:/mybatis/config/mybatis-config.xml
+  config-location: classpath:/mybatis/config/mybatis-config.xml
+  type-handlers-package: com.yuanstack.lottery.crypt
+#  configuration:
+#    cache-enabled: true
+#    lazy-loading-enabled: false
+#    aggressive-lazy-loading: true
 
 # Dubbo 广播方式配置
 dubbo:
