@@ -30,12 +30,12 @@ public class Activity {
     /**
      * 开始时间
      */
-    private Date beginDateTime;
+    private Date beginTime;
 
     /**
      * 结束时间
      */
-    private Date endDateTime;
+    private Date endTime;
 
     /**
      * 库存
@@ -100,19 +100,19 @@ public class Activity {
     }
 
     public Date getBeginDateTime() {
-        return beginDateTime;
+        return beginTime;
     }
 
     public void setBeginDateTime(Date beginDateTime) {
-        this.beginDateTime = beginDateTime;
+        this.beginTime = beginDateTime;
     }
 
     public Date getEndDateTime() {
-        return endDateTime;
+        return endTime;
     }
 
     public void setEndDateTime(Date endDateTime) {
-        this.endDateTime = endDateTime;
+        this.endTime = endDateTime;
     }
 
     public Integer getStockCount() {

@@ -7,8 +7,8 @@
         <result column="activity_id" property="activityId"/>
         <result column="activity_name" property="activityName"/>
         <result column="activity_desc" property="activityDesc"/>
-        <result column="begin_date_time" property="beginDateTime"/>
-        <result column="end_date_time" property="endDateTime"/>
+        <result column="begin_time" property="beginTime"/>
+        <result column="end_time" property="endTime"/>
         <result column="stock_count" property="stockCount"/>
         <result column="take_count" property="takeCount"/>
         <result column="state" property="state"/>
@@ -19,16 +19,24 @@
 
     <insert id="insert" parameterType="com.yuanstack.lottery.infrastructure.po.Activity">
         INSERT INTO activity
-        (activity_id, activity_name, activity_desc, begin_date_time, end_date_time,
-        stock_count, take_count, state, creator, create_time, update_time)
-        VALUES
-        (#{activityId}, #{activityName}, #{activityDesc}, #{beginDateTime}, #{endDateTime},
-         #{stockCount}, #{takeCount}, #{state}, #{creator}, now(), now())
+        (activity_id, activity_name, activity_desc, begin_time, end_time,
+         stock_count, take_count, state, creator, create_time, update_time)
+        VALUES (#{activityId}, #{activityName}, #{activityDesc}, #{beginDateTime}, #{endDateTime},
+                #{stockCount}, #{takeCount}, #{state}, #{creator}, now(), now())
     </insert>
 
     <select id="queryActivityById" parameterType="java.lang.Long" resultMap="activityMap">
-        SELECT activity_id, activity_name, activity_desc, begin_date_time, end_date_time,
-        stock_count, take_count, state, creator, create_time, update_time
+        SELECT activity_id,
+               activity_name,
+               activity_desc,
+               begin_time,
+               end_time,
+               stock_count,
+               take_count,
+               state,
+               creator,
+               create_time,
+               update_time
         FROM activity
         WHERE activity_id = #{activityId}
     </select>

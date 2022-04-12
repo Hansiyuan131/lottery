@@ -8,7 +8,7 @@ import com.yuanstack.lottery.rpc.ActivityBooth;
 import com.yuanstack.lottery.rpc.dto.ActivityDto;
 import com.yuanstack.lottery.rpc.req.ActivityReq;
 import com.yuanstack.lottery.rpc.res.ActivityRes;
-import org.springframework.stereotype.Service;
+import org.apache.dubbo.config.annotation.Service;
 
 import javax.annotation.Resource;
 
@@ -25,6 +25,9 @@ public class ActivityBoothImpl implements ActivityBooth {
     public ActivityRes queryActivityById(ActivityReq req) {
 
         Activity activity = activityDao.queryActivityById(req.getActivityId());
+        if (activity == null) {
+            return new ActivityRes(new Result(ResponseCode.UN_ERROR.getCode(), ResponseCode.UN_ERROR.getInfo()), null);
+        }
 
         ActivityDto activityDto = ActivityDto.builder()
                 .activityId(activity.getActivityId())
