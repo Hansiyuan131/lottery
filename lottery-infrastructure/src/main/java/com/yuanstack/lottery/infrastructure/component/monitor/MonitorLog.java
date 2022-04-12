@@ -6,6 +6,7 @@ import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.filter.LevelFilter;
 import ch.qos.logback.core.rolling.RollingFileAppender;
+import ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy;
 import ch.qos.logback.core.spi.FilterReply;
 import ch.qos.logback.core.util.FileSize;
 import ch.qos.logback.core.util.OptionHelper;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -125,7 +127,7 @@ public class MonitorLog {
         PatternLayoutEncoder encoder = new PatternLayoutEncoder();
         //设置上下文，每个logger都关联到logger上下文，默认上下文名称为default。
         // 但可以使用<contextName>设置成其他名字，用于区分不同应用程序的记录。一旦设置，不能修改。
-        encoder.setCharset(Charset.forName("UTF-8"));
+        encoder.setCharset(StandardCharsets.UTF_8);
         encoder.setContext(context);
         //设置格式，因为聚合打印日志了，人工控制换行
         encoder.setPattern(MonitorConstants.M);

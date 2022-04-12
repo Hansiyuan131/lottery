@@ -32,7 +32,6 @@
         <commons.lang3.version>3.8.1</commons.lang3.version>
         <!-- 日志 -->
         <slf4j.version>1.7.7</slf4j.version>
-        <logback.version>1.0.9</logback.version>
         <!-- 其他服务 -->
         <dubbo.version>2.7.1</dubbo.version>
         <zookeeper.version>3.4.14</zookeeper.version>
@@ -41,6 +40,7 @@
         <scheduler.version>2.3.2</scheduler.version>
         <xstream.version>1.4.10</xstream.version>
         <dom4j.version>1.6.1</dom4j.version>
+        <logback.version>1.2.3</logback.version>
     </properties>
 
     <parent>
@@ -52,6 +52,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
