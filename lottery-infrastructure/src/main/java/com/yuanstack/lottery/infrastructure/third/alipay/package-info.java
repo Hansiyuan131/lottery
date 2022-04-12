@@ -1,0 +1,1 @@
+package com.yuanstack.lottery.infrastructure.third.alipay;
