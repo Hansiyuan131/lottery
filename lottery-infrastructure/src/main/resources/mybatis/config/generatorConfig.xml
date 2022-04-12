@@ -2,21 +2,21 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
-    <classPathEntry
-            location="/Users/hansiyuan/.m2/repository/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar"/>
+<!--    <classPathEntry location="/Users/hansiyuan/.m2/repository/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar"/>-->
+    <classPathEntry location="D:\Tools\maven_repository\mysql\mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar"/>
     <!-- Mybatis Generator目前有5种运行模式，分别为：MyBatis3DynamicSql、MyBatis3Kotlin、MyBatis3、MyBatis3Simple、MyBatis3DynamicSqlV1。 -->
     <context id="dbcontext" targetRuntime="MyBatis3" defaultModelType="flat">
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
 
-        <commentGenerator type="com.yuanstack.lottery.infrastructure.plugin.MyCommentGenerator">
-            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="false"/>
-            <property name="suppressDate" value="false"/>
-        </commentGenerator>
+<!--        <commentGenerator type="com.yuanstack.lottery.infrastructure.plugin.MyCommentGenerator">-->
+<!--            &lt;!&ndash; 是否去除自动生成的注释 true：是 ： false:否 &ndash;&gt;-->
+<!--            <property name="suppressAllComments" value="false"/>-->
+<!--            <property name="suppressDate" value="false"/>-->
+<!--        </commentGenerator>-->
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/lottery"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/lottery?serverTimezone=Asia/Shanghai"
                         userId="root" password="mysql123456"/>
 
         <!-- 是否强制转换 只有forceBigDecimals 一个属性 -->
