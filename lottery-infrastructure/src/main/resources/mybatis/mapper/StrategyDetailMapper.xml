@@ -4,9 +4,31 @@
 
     <select id="queryStrategyDetailList" parameterType="java.lang.Long"
             resultType="com.yuanstack.lottery.infrastructure.po.StrategyDetail">
-        SELECT id, strategy_id, award_id, award_count, award_rate, create_time, update_time
+        SELECT id,
+               strategyId,
+               awardId,
+               awardCount,
+               awardSurplusCount,
+               awardRate,
+               createTime,
+               updateTime
         FROM strategy_detail
-        WHERE strategy_id = #{strategyId}
+        WHERE strategyId = #{strategyId}
     </select>
+
+    <select id="queryNoStockStrategyAwardList" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT awardId
+        FROM strategy_detail
+        WHERE strategyId = #{strategyId}
+          AND awardSurplusCount = 0
+    </select>
+
+    <update id="deductStock" parameterType="com.yuanstack.lottery.infrastructure.po.StrategyDetail">
+        UPDATE strategy_detail
+        SET awardSurplusCount = awardSurplusCount - 1
+        WHERE strategyId = #{strategyId}
+          AND awardId = #{awardId}
+          AND awardSurplusCount > 0
+    </update>
 
 </mapper>

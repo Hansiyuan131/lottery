@@ -3,6 +3,8 @@ package com.yuanstack.lottery.domain.strategy.repository;
 import com.yuanstack.lottery.domain.strategy.model.aggregates.StrategyRich;
 import com.yuanstack.lottery.infrastructure.po.Award;
 
+import java.util.List;
+
 /**
  * 抽奖策略 StrategyRepository
  *
@@ -12,7 +14,7 @@ import com.yuanstack.lottery.infrastructure.po.Award;
 public interface StrategyRepository {
 
     /**
-     * 查询策略
+     * 获取抽奖策略配置数据
      *
      * @param strategyId 策略id
      * @return 策略信息
@@ -26,4 +28,21 @@ public interface StrategyRepository {
      * @return 奖品信息
      */
     Award queryAwardInfo(String awardId);
+
+    /**
+     * 无库存排除奖品列表ID集合
+     *
+     * @param strategyId 策略ID
+     * @return 奖品列表
+     */
+    List<String> queryNoStockStrategyAwardList(Long strategyId);
+
+    /**
+     * 扣减库存
+     *
+     * @param strategyId 策略ID
+     * @param awardId    奖品ID
+     * @return 扣减结果
+     */
+    boolean deductStock(Long strategyId, String awardId);
 }

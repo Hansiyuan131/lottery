@@ -5,6 +5,8 @@ import com.yuanstack.lottery.domain.strategy.model.vo.AwardRateInfo;
 import java.util.List;
 
 /**
+ * 抽奖算法接口
+ *
  * @author hansiyuan
  * @date 2022年04月12日 20:18
  */

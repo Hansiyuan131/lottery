@@ -5,14 +5,15 @@
     <select id="queryAwardInfo" parameterType="java.lang.String"
             resultType="com.yuanstack.lottery.infrastructure.po.Award">
         SELECT id,
-               award_id,
-               award_type,
-               award_name,
-               award_content,
-               create_time,
-               update_time
+               awardId,
+               awardType,
+               awardCount,
+               awardName,
+               awardContent,
+               createTime,
+               updateTime
         FROM award
-        WHERE award_id = #{awardId}
+        WHERE awardId = #{awardId}
     </select>
 
 </mapper>

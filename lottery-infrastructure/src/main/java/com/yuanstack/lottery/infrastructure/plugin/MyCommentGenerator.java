@@ -1,6 +1,5 @@
 package com.yuanstack.lottery.infrastructure.plugin;
 
-import com.mysql.cj.util.StringUtils;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
@@ -175,8 +174,8 @@ public class MyCommentGenerator implements CommentGenerator {
 
         field.addJavaDocLine("/**");
         sb.append(" * ");
-        sb.append(StringUtils.isNullOrEmpty(introspectedColumn.getRemarks()) ? introspectedColumn.getActualColumnName()
-                : introspectedColumn.getRemarks());
+//        sb.append(StringUtils.isNullOrEmpty(introspectedColumn.getRemarks()) ? introspectedColumn.getActualColumnName()
+//                : introspectedColumn.getRemarks());
         field.addJavaDocLine(sb.toString());
 
         //      addJavadocTag(field, false);
