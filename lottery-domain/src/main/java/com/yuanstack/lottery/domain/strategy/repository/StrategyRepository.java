@@ -1,7 +1,7 @@
 package com.yuanstack.lottery.domain.strategy.repository;
 
 import com.yuanstack.lottery.domain.strategy.model.aggregates.StrategyRich;
-import com.yuanstack.lottery.infrastructure.po.Award;
+import com.yuanstack.lottery.domain.strategy.model.vo.AwardBriefVO;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public interface StrategyRepository {
      * @param awardId 奖品ID
      * @return 奖品信息
      */
-    Award queryAwardInfo(String awardId);
+    AwardBriefVO queryAwardInfo(String awardId);
 
     /**
      * 无库存排除奖品列表ID集合

@@ -34,7 +34,7 @@ public class ActivityDaoTest {
         activity.setEndDateTime(new Date());
         activity.setStockCount(100);
         activity.setTakeCount(10);
-        activity.setState((byte) 0);
+        activity.setState(0);
         activity.setCreator("hhhh");
         activityDao.insert(activity);
     }

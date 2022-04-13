@@ -26,7 +26,23 @@ public class Result implements Serializable {
         return new Result(ResponseCode.SUCCESS.getCode(), ResponseCode.SUCCESS.getInfo());
     }
 
+    public static Result buildResult(ResponseCode code, String info) {
+        return new Result(code.getCode(), info);
+    }
+
+    public static Result buildResult(ResponseCode code, ResponseCode info) {
+        return new Result(code.getCode(), info.getInfo());
+    }
+
+    public static Result buildResult(ResponseCode responseCode) {
+        return new Result(responseCode.getCode(), responseCode.getInfo());
+    }
+
     public static Result buildErrorResult() {
         return new Result(ResponseCode.UN_ERROR.getCode(), ResponseCode.UN_ERROR.getInfo());
+    }
+
+    public static Result buildErrorResult(String info) {
+        return new Result(ResponseCode.UN_ERROR.getCode(), info);
     }
 }
