@@ -9,13 +9,14 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
 mybatis:
-  mapper-locations: classpath:/mybatis/mapper/*.xml
-  config-location: classpath:/mybatis/config/mybatis-config.xml
+  mapper-locations: classpath:/mapper/*.xml
   type-handlers-package: com.yuanstack.lottery.crypt
-#  configuration:
-#    cache-enabled: true
-#    lazy-loading-enabled: false
-#    aggressive-lazy-loading: true
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: true
+    lazy-loading-enabled: false
+    aggressive-lazy-loading: true
 
 # Dubbo 广播方式配置
 dubbo:
