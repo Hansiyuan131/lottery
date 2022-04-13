@@ -1,9 +1,7 @@
-package com.yuanstack.lottery.domain.lottery.draw;
+package com.yuanstack.lottery.domain.lottery;
 
-import com.yuanstack.lottery.domain.strategy.model.req.DrawReq;
 import com.yuanstack.lottery.domain.strategy.model.vo.AwardRateInfo;
 import com.yuanstack.lottery.domain.strategy.service.algorithm.DrawAlgorithm;
-import com.yuanstack.lottery.domain.strategy.service.draw.DrawExec;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,25 +10,21 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @description: 抽奖流程测试
+ * @description: 抽奖算法测试
  * @author: hansiyuan
- * @date: 2022/4/13 10:40 AM
+ * @date: 2022/4/13 10:42 AM
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AbstractDrawBaseTest {
-
-    @Resource
-    private DrawExec drawExec;
+public class DrawAlgorithmTest {
 
     @Autowired
-    @Qualifier("entiretyRateRandomDrawAlgorithm")
+    @Qualifier("singleRateRandomDrawAlgorithm")
     private DrawAlgorithm randomDrawAlgorithm;
 
     @Before
@@ -44,15 +38,19 @@ public class AbstractDrawBaseTest {
         strategyList.add(new AwardRateInfo("五等奖：充电宝", new BigDecimal("0.35")));
 
         // 初始数据
-        randomDrawAlgorithm.initRateTuple(10001L, strategyList);
+        randomDrawAlgorithm.initRateTuple(100001L, strategyList);
     }
 
     @Test
-    public void test_drawExec() {
-        drawExec.doDrawExec(new DrawReq("小A", 10001L));
-        drawExec.doDrawExec(new DrawReq("小B", 10001L));
-        drawExec.doDrawExec(new DrawReq("小C", 10001L));
-        drawExec.doDrawExec(new DrawReq("小D", 10001L));
+    public void test_randomDrawAlgorithm() {
+
+        List<String> excludeAwardIds = new ArrayList<>();
+        excludeAwardIds.add("二等奖：iphone");
+        excludeAwardIds.add("四等奖：AirPods");
+
+        for (int i = 0; i < 20; i++) {
+            System.out.println("中奖结果：" + randomDrawAlgorithm.randomDraw(100001L, excludeAwardIds));
+        }
+
     }
 }
-
