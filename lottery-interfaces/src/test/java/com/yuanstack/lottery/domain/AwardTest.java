@@ -1,4 +1,4 @@
-package com.yuanstack.lottery.domain.award;
+package com.yuanstack.lottery.domain;
 
 import com.alibaba.fastjson.JSON;
 import com.yuanstack.lottery.common.constants.lottery.DrawStateEnum;

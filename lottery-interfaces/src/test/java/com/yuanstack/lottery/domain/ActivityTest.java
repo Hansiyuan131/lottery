@@ -1,4 +1,4 @@
-package com.yuanstack.lottery.domain.activity;
+package com.yuanstack.lottery.domain;
 
 import com.alibaba.fastjson.JSON;
 import com.yuanstack.lottery.common.constants.activity.ActivityStateEnum;
@@ -6,11 +6,14 @@ import com.yuanstack.lottery.common.constants.award.AwardTypeEnum;
 import com.yuanstack.lottery.common.constants.lottery.StrategyModeEnum;
 import com.yuanstack.lottery.domain.activity.model.aggregates.ActivityConfigRich;
 import com.yuanstack.lottery.domain.activity.model.req.ActivityConfigReq;
+import com.yuanstack.lottery.domain.activity.model.req.PartakeReq;
+import com.yuanstack.lottery.domain.activity.model.res.PartakeResult;
 import com.yuanstack.lottery.domain.activity.model.vo.ActivityVO;
 import com.yuanstack.lottery.domain.activity.model.vo.AwardVO;
 import com.yuanstack.lottery.domain.activity.model.vo.StrategyDetailVO;
 import com.yuanstack.lottery.domain.activity.model.vo.StrategyVO;
 import com.yuanstack.lottery.domain.activity.service.deploy.ActivityDeploy;
+import com.yuanstack.lottery.domain.activity.service.partake.ActivityPartake;
 import com.yuanstack.lottery.domain.activity.service.stateflow.StateHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
@@ -36,6 +39,8 @@ public class ActivityTest {
 
     @Resource
     ActivityDeploy activityDeploy;
+    @Resource
+    ActivityPartake activityPartake;
 
     @Resource
     private StateHandler stateHandler;
@@ -118,31 +123,31 @@ public class ActivityTest {
         award_01.setAwardId("101");
         award_01.setAwardType(AwardTypeEnum.DESC.getCode());
         award_01.setAwardName("电脑");
-        award_01.setAwardContent("请联系活动组织者 fustack");
+        award_01.setAwardContent("请联系活动组织者 yuanstack");
 
         AwardVO award_02 = new AwardVO();
         award_02.setAwardId("102");
         award_02.setAwardType(AwardTypeEnum.DESC.getCode());
         award_02.setAwardName("手机");
-        award_02.setAwardContent("请联系活动组织者 fustack");
+        award_02.setAwardContent("请联系活动组织者 yuanstack");
 
         AwardVO award_03 = new AwardVO();
         award_03.setAwardId("103");
         award_03.setAwardType(AwardTypeEnum.DESC.getCode());
         award_03.setAwardName("平板");
-        award_03.setAwardContent("请联系活动组织者 fustack");
+        award_03.setAwardContent("请联系活动组织者 yuanstack");
 
         AwardVO award_04 = new AwardVO();
         award_04.setAwardId("104");
         award_04.setAwardType(AwardTypeEnum.DESC.getCode());
         award_04.setAwardName("耳机");
-        award_04.setAwardContent("请联系活动组织者 fustack");
+        award_04.setAwardContent("请联系活动组织者 yuanstack");
 
         AwardVO award_05 = new AwardVO();
         award_05.setAwardId("105");
         award_05.setAwardType(AwardTypeEnum.DESC.getCode());
         award_05.setAwardName("数据线");
-        award_05.setAwardContent("请联系活动组织者 fustack");
+        award_05.setAwardContent("请联系活动组织者 yuanstack");
 
         List<AwardVO> awardList = new ArrayList<>();
         awardList.add(award_01);
@@ -165,6 +170,14 @@ public class ActivityTest {
         log.info("审核通过，测试：{}", JSON.toJSONString(stateHandler.checkPass(100001L, ActivityStateEnum.ARRAIGNMENT)));
         log.info("运行活动，测试：{}", JSON.toJSONString(stateHandler.doing(100001L, ActivityStateEnum.PASS)));
         log.info("二次提审，测试：{}", JSON.toJSONString(stateHandler.checkPass(100001L, ActivityStateEnum.EDIT)));
+    }
+
+    @Test
+    public void test_activityPartake() {
+        PartakeReq req = new PartakeReq("Uhdgkw766120d", 100001L);
+        PartakeResult res = activityPartake.doPartake(req);
+        log.info("请求参数：{}", JSON.toJSONString(req));
+        log.info("测试结果：{}", JSON.toJSONString(res));
     }
 
 }

@@ -1,4 +1,4 @@
-package com.yuanstack.lottery.domain.lottery;
+package com.yuanstack.lottery.domain;
 
 import com.yuanstack.lottery.domain.strategy.model.vo.AwardRateInfo;
 import com.yuanstack.lottery.domain.strategy.service.algorithm.DrawAlgorithm;

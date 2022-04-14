@@ -1,10 +1,8 @@
 package com.yuanstack.lottery.domain.activity.repository;
 
 import com.yuanstack.lottery.common.constants.activity.ActivityStateEnum;
-import com.yuanstack.lottery.domain.activity.model.vo.ActivityVO;
-import com.yuanstack.lottery.domain.activity.model.vo.AwardVO;
-import com.yuanstack.lottery.domain.activity.model.vo.StrategyDetailVO;
-import com.yuanstack.lottery.domain.activity.model.vo.StrategyVO;
+import com.yuanstack.lottery.domain.activity.model.req.PartakeReq;
+import com.yuanstack.lottery.domain.activity.model.vo.*;
 
 import java.util.List;
 
@@ -52,4 +50,20 @@ public interface ActivityRepository {
      * @return 更新结果
      */
     boolean alterStatus(Long activityId, Enum<ActivityStateEnum> beforeState, Enum<ActivityStateEnum> afterState);
+
+    /**
+     * 查询活动账单信息【库存、状态、日期、个人参与次数】
+     *
+     * @param req 参与活动请求
+     * @return 活动账单
+     */
+    ActivityBillVO queryActivityBill(PartakeReq req);
+
+    /**
+     * 扣减活动库存
+     *
+     * @param activityId 活动ID
+     * @return 扣减结果
+     */
+    int subtractionActivityStock(Long activityId);
 }

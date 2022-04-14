@@ -1,4 +1,4 @@
-package com.yuanstack.lottery.domain.support;
+package com.yuanstack.lottery.domain;
 
 import com.yuanstack.lottery.common.constants.ids.IdTypeEnum;
 import com.yuanstack.lottery.domain.support.ids.IdGenerator;
