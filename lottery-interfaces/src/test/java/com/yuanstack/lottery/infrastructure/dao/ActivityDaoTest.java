@@ -30,8 +30,8 @@ public class ActivityDaoTest {
         activity.setActivityId(100001L);
         activity.setActivityName("测试活动");
         activity.setActivityDesc("仅用于插入数据测试");
-        activity.setBeginDateTime(new Date());
-        activity.setEndDateTime(new Date());
+        activity.setBeginTime(new Date());
+        activity.setEndTime(new Date());
         activity.setStockCount(100);
         activity.setTakeCount(10);
         activity.setState(0);

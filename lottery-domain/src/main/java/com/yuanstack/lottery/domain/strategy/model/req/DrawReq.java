@@ -24,4 +24,14 @@ public class DrawReq {
      * 策略ID
      */
     private Long strategyId;
+
+    /**
+     * 防重ID
+     */
+    private String uuid;
+
+    public DrawReq(String uId, Long strategyId) {
+        this.uId = uId;
+        this.strategyId = strategyId;
+    }
 }

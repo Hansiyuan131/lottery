@@ -2,7 +2,7 @@
  * @author hansiyuan
  * @date 2022年04月12日 20:47
  */
-package com.yuanstack.lottery.application;
+package com.yuanstack.lottery.application.worker;
 
 /**
  * 应用层{application}

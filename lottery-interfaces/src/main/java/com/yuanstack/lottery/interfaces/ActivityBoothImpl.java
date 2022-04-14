@@ -33,8 +33,8 @@ public class ActivityBoothImpl implements ActivityBooth {
                 .activityId(activity.getActivityId())
                 .activityName(activity.getActivityName())
                 .activityDesc(activity.getActivityDesc())
-                .beginDateTime(activity.getBeginDateTime())
-                .endDateTime(activity.getEndDateTime())
+                .beginDateTime(activity.getBeginTime())
+                .endDateTime(activity.getEndTime())
                 .stockCount(activity.getStockCount())
                 .takeCount(activity.getTakeCount())
                 .build();

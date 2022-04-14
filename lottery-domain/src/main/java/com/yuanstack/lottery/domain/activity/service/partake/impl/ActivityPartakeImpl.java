@@ -7,6 +7,7 @@ import com.yuanstack.lottery.common.constants.response.ResponseCode;
 import com.yuanstack.lottery.common.model.Result;
 import com.yuanstack.lottery.domain.activity.model.req.PartakeReq;
 import com.yuanstack.lottery.domain.activity.model.vo.ActivityBillVO;
+import com.yuanstack.lottery.domain.activity.model.vo.DrawOrderVO;
 import com.yuanstack.lottery.domain.activity.repository.UserTakeActivityRepository;
 import com.yuanstack.lottery.domain.activity.service.partake.BaseActivityPartake;
 import com.yuanstack.lottery.domain.support.ids.IdGenerator;
@@ -104,5 +105,34 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
         } finally {
             dbRouter.clear();
         }
+    }
+
+    @Override
+    public Result recordDrawOrder(DrawOrderVO drawOrder) {
+        try {
+            dbRouter.doRouter(drawOrder.getUId());
+            return transactionTemplate.execute(status -> {
+                try {
+                    // 锁定活动领取记录
+                    int lockCount = userTakeActivityRepository.lockTackActivity(drawOrder.getUId(), drawOrder.getActivityId(), drawOrder.getTakeId());
+                    if (0 == lockCount) {
+                        status.setRollbackOnly();
+                        log.error("记录中奖单，个人参与活动抽奖已消耗完 activityId：{} uId：{}", drawOrder.getActivityId(), drawOrder.getUId());
+                        return Result.buildResult(ResponseCode.NO_UPDATE);
+                    }
+
+                    // 保存抽奖信息
+                    userTakeActivityRepository.saveUserStrategyExport(drawOrder);
+                } catch (DuplicateKeyException e) {
+                    status.setRollbackOnly();
+                    log.error("记录中奖单，唯一索引冲突 activityId：{} uId：{}", drawOrder.getActivityId(), drawOrder.getUId(), e);
+                    return Result.buildResult(ResponseCode.INDEX_DUP);
+                }
+                return Result.buildSuccessResult();
+            });
+        } finally {
+            dbRouter.clear();
+        }
+
     }
 }
