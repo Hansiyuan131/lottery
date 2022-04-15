@@ -1,7 +1,7 @@
 package com.yuanstack.lottery.infrastructure.repository;
 
 import com.yuanstack.lottery.domain.award.repository.AwardRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 /**
  * 奖品表仓储服务
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author hansiyuan
  * @date 2022年04月13日 20:58
  */
-@Component
+@Repository
 public class AwardRepositoryImpl implements AwardRepository {
 
 }

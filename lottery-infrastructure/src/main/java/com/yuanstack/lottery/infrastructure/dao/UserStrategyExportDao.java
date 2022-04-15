@@ -25,6 +25,6 @@ public interface UserStrategyExportDao {
      * @param uId 用户ID
      * @return 用户策略
      */
-    @DataSourceRouter
+    @DataSourceRouter(key = "uId")
     UserStrategyExport queryUserStrategyExportByUId(String uId);
 }
