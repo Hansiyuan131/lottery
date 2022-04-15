@@ -1,4 +1,4 @@
-package com.yuanstack.lottery.domain.rule.model.req;
+package com.yuanstack.lottery.rpc.req;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,26 +8,24 @@ import lombok.NoArgsConstructor;
 import java.util.Map;
 
 /**
- * @description: 决策物料
+ * @description: 量化人群抽奖请求参数
  * @author: hansiyuan
- * @date: 2022/4/14 4:18 PM
+ * @date: 2022/4/15 10:44 AM
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class DecisionMatterReq {
+@NoArgsConstructor
+public class QuantificationDrawReq {
 
     /**
      * 用户ID
      */
-    private String userId;
-
+    private String uId;
     /**
      * 规则树ID
      */
     private Long treeId;
-
     /**
      * 决策值
      */

@@ -44,6 +44,7 @@
         <logback.version>1.2.3</logback.version>
         <mysql.version>5.1.34</mysql.version>
         <hutool.version>5.5.0</hutool.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
     </properties>
 
     <parent>
@@ -110,6 +111,20 @@
                 <artifactId>dubbo</artifactId>
                 <version>${dubbo.version}</version>
             </dependency>
+            <!-- MapStruct begin -->
+            <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <!-- MapStruct end -->
         </dependencies>
     </dependencyManagement>
     <build>

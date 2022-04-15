@@ -1,22 +1,33 @@
-package com.yuanstack.lottery.domain.strategy.model.vo;
+package com.yuanstack.lottery.rpc.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @description: 中奖奖品信息
+ * @description: 奖品信息
  * @author: hansiyuan
- * @date: 2022/4/13 10:24 AM
+ * @date: 2022/4/15 10:42 AM
  */
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
 @Builder
-@Data
-public class DrawAwardInfo {
+@NoArgsConstructor
+public class AwardDTO implements Serializable {
+
+    /**
+     * 用户ID
+     */
+    private String userId;
+
+    /**
+     * 活动ID
+     */
+    private Long activityId;
 
     /**
      * 奖品ID
@@ -52,10 +63,4 @@ public class DrawAwardInfo {
      */
     private Date grantDate;
 
-    public DrawAwardInfo(String awardId, Integer awardType, String awardName,String awardContent) {
-        this.awardId = awardId;
-        this.awardType = awardType;
-        this.awardName = awardName;
-        this.awardContent = awardContent;
-    }
 }

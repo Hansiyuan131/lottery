@@ -9,7 +9,7 @@ import com.yuanstack.lottery.domain.award.service.goods.DistributionGoods;
 import com.yuanstack.lottery.domain.strategy.model.req.DrawReq;
 import com.yuanstack.lottery.domain.strategy.model.res.DrawResult;
 import com.yuanstack.lottery.domain.strategy.model.vo.AwardRateInfo;
-import com.yuanstack.lottery.domain.strategy.model.vo.DrawAwardInfo;
+import com.yuanstack.lottery.domain.strategy.model.vo.DrawAwardVO;
 import com.yuanstack.lottery.domain.strategy.service.algorithm.DrawAlgorithm;
 import com.yuanstack.lottery.domain.strategy.service.draw.DrawExec;
 import lombok.extern.slf4j.Slf4j;
@@ -69,16 +69,16 @@ public class AwardTest {
         // 判断抽奖结果
         Integer drawState = drawResult.getDrawState();
         if (DrawStateEnum.FAIL.getCode().equals(drawState)) {
-            log.info("未中奖 DrawAwardInfo is null");
+            log.info("未中奖 DrawAwardVO is null");
             return;
         }
 
         // 封装发奖参数，orderId：2109313442431 为模拟ID，需要在用户参与领奖活动时生成
-        DrawAwardInfo drawAwardInfo = drawResult.getDrawAwardInfo();
-        GoodsReq goodsReq = new GoodsReq(drawResult.getUId(), "2109313442431", drawAwardInfo.getAwardId(), drawAwardInfo.getAwardName(), drawAwardInfo.getAwardContent());
+        DrawAwardVO drawAwardVO = drawResult.getDrawAwardVO();
+        GoodsReq goodsReq = new GoodsReq(drawResult.getUId(), "2109313442431", drawAwardVO.getAwardId(), drawAwardVO.getAwardName(), drawAwardVO.getAwardContent());
 
         // 根据 awardType 从抽奖工厂中获取对应的发奖服务
-        DistributionGoods distributionGoodsService = distributionGoodsFactory.getDistributionGoodsService(drawAwardInfo.getAwardType());
+        DistributionGoods distributionGoodsService = distributionGoodsFactory.getDistributionGoodsService(drawAwardVO.getAwardType());
         DistributionRes distributionRes = distributionGoodsService.doDistribution(goodsReq);
 
         log.info("测试结果：{}", JSON.toJSONString(distributionRes));
